@@ -1,0 +1,35 @@
+.cocktail {
+  height: 55rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: var(--lightShadow);
+  overflow: hidden;
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: var(--darkShadow);
+  }
+}
+
+.cocktail-image {
+  height: 60%;
+  /* width: 100%; */
+  background-size: cover;
+  background-position: center;
+}
+
+.cocktail-info {
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+}
+
+.cocktail-name {
+  font-size: 3rem;
+}
+
+.cocktail-alcoholic {
+  font-size: 1.4rem;
+  color: var(--darkGrey);
+  padding-bottom: 1rem;
+}

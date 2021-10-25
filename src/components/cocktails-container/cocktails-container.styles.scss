@@ -1,0 +1,10 @@
+.cocktails-container {
+  padding: 0 0 7rem;
+}
+
+.cocktails-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(28rem, 1fr));
+  row-gap: 6rem;
+  column-gap: 3rem;
+}
