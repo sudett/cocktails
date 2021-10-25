@@ -1,3 +1,5 @@
+In this project i had different pages and i practiced Routing. It also helped me sharpen my skills at making components and decide which one should be stateful and which one be stateless. The search functinality was a little challenging for me, because i had to made multiple API request so i should found the right position in my app to call my fetch function.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
