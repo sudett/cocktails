@@ -1,5 +1,5 @@
 .cocktail {
-  height: 55rem;
+  height: 58rem;
   background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: var(--lightShadow);
@@ -12,7 +12,7 @@
 }
 
 .cocktail-image {
-  height: 60%;
+  height: 55%;
   /* width: 100%; */
   background-size: cover;
   background-position: center;
@@ -21,7 +21,7 @@
 .cocktail-info {
   display: flex;
   flex-direction: column;
-  padding: 2.5rem;
+  padding: 2rem 2.5rem;
 }
 
 .cocktail-name {
