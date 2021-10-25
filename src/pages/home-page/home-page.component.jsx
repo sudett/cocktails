@@ -12,38 +12,56 @@ export default class HomePage extends React.Component {
     this.state = {
       cocktails: [],
       isLoading: true,
+      searchField: "",
     };
   }
 
   fetchCocktail = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
+    try {
+      this.setState({ isLoading: true });
+      const response = await fetch(`${url}${this.state.searchField}`);
+      const data = await response.json();
 
-    const { drinks } = data;
-    console.log(drinks);
-    const cocktails = drinks.map((drink) => {
-      return {
-        id: drink.idDrink,
-        name: drink.strDrink,
-        alcoholic: drink.strAlcoholic,
-        glass: drink.strGlass,
-        image: drink.strDrinkThumb,
-      };
-    });
+      const { drinks } = data;
 
-    this.setState({ cocktails, isLoading: false }, () =>
-      console.log(this.state.cocktails)
-    );
+      if (drinks) {
+        const cocktails = drinks.map((drink) => {
+          return {
+            id: drink.idDrink,
+            name: drink.strDrink,
+            alcoholic: drink.strAlcoholic,
+            glass: drink.strGlass,
+            image: drink.strDrinkThumb,
+          };
+        });
+
+        this.setState({ cocktails }, () => console.log(this.state.cocktails));
+      } else {
+        this.setState({ cocktails: [] });
+      }
+
+      this.setState({ isLoading: false });
+    } catch (err) {
+      console.error(err);
+      this.setState({ isLoading: false });
+    }
   };
 
   componentDidMount() {
     this.fetchCocktail();
   }
 
+  changeHandler = (e) => {
+    this.setState({ searchField: e.target.value }, () => this.fetchCocktail());
+  };
+
   render() {
     return (
       <div>
-        <Search />
+        <Search
+          searchField={this.state.searchField}
+          changeHandler={this.changeHandler}
+        />
         <CocktailsContainer
           cocktails={this.state.cocktails}
           isLoading={this.state.isLoading}

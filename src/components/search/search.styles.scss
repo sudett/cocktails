@@ -1,0 +1,23 @@
+.search {
+  /* max-width: 60rem;
+  margin: 8rem auto 0; */
+  padding: 3rem 4rem;
+  background-color: #fff;
+  box-shadow: var(--lightShadow);
+}
+
+@media only screen and (max-width: 43.75em) {
+  .search {
+    max-width: 85vw;
+  }
+}
+
+.search-input {
+  width: 100%;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  background-color: var(--mainGrey);
+  color: inherit;
+  font-size: inherit;
+}
