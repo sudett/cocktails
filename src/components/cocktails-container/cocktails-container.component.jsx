@@ -1,29 +1,35 @@
 import React from "react";
 
+import { useGlobalContext } from "../../context";
+
 import Loading from "../loading/loading.component";
 import Cocktail from "../cocktail/cocktail.component";
 
-import "./cocktails-container.styles.scss";
+import {
+  CocktailsContainerStyles,
+  CocktailsList,
+} from "./cocktails-container.styles";
+import { HeadingPrimary } from "../../App.jsx";
 
-const CocktailsContainer = ({ cocktails, isLoading }) => {
+const CocktailsContainer = () => {
+  const { isLoading, cocktails } = useGlobalContext();
+
   if (isLoading) return <Loading />;
 
   if (cocktails.length === 0)
     return (
-      <h2 className="heading-primary">
-        No cocktails matched your search criteria
-      </h2>
+      <HeadingPrimary>No cocktails matched your search criteria</HeadingPrimary>
     );
 
   return (
-    <div className="cocktails-container container">
-      <h1 className="heading-primary">Cocktails</h1>
-      <div className="cocktails-list">
+    <CocktailsContainerStyles>
+      <HeadingPrimary>Cocktails</HeadingPrimary>
+      <CocktailsList>
         {cocktails.map(({ id, ...otherProps }) => (
           <Cocktail key={id} id={id} {...otherProps} />
         ))}
-      </div>
-    </div>
+      </CocktailsList>
+    </CocktailsContainerStyles>
   );
 };
 

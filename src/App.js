@@ -8,7 +8,7 @@ import AboutPage from "./pages/about-page/about-page.component";
 import ErrorPage from "./pages/error-page/error-page.component";
 import Header from "./components/header/header.component";
 
-import "./App.css";
+import "./App.jsx";
 
 function App() {
   return (

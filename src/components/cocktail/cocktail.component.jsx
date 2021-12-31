@@ -1,24 +1,24 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
-
-import "./cocktail.styles.scss";
+import {
+  CocktailContainer,
+  CocktailImage,
+  CocktailInfo,
+  CocktailName,
+  CocktailAlcoholic,
+} from "./cocktail.styles";
+import { ButtonPrimary } from "../../App.jsx";
 
 const Cocktail = ({ image, alcoholic, glass, name, id }) => (
-  <div className="cocktail">
-    <div
-      className="cocktail-image"
-      style={{ backgroundImage: `url(${image})` }}
-    />
-    <div className="cocktail-info">
-      <h2 className="cocktail-name">{name}</h2>
-      <h4 className="cocktail-glass">{glass}</h4>
-      <span className="cocktail-alcoholic">{alcoholic}</span>
-      <Link className="btn-primary" to={`/cocktails/${id}`}>
-        Details
-      </Link>
-    </div>
-  </div>
+  <CocktailContainer>
+    <CocktailImage image={image} />
+    <CocktailInfo>
+      <CocktailName>{name}</CocktailName>
+      <h4>{glass}</h4>
+      <CocktailAlcoholic>{alcoholic}</CocktailAlcoholic>
+      <ButtonPrimary to={`/cocktails/${id}`}>Details</ButtonPrimary>
+    </CocktailInfo>
+  </CocktailContainer>
 );
 
 export default Cocktail;

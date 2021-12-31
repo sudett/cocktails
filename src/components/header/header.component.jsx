@@ -2,30 +2,30 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import { ReactComponent as Logo } from "../../assets/logo.svg";
-
-import "./header.styles.scss";
+import {
+  Navigation,
+  NavigationContainer,
+  LogoContainer,
+  NavList,
+  NavLink,
+} from "./header.styles";
 
 const Header = () => (
-  <nav className="navigation">
-    <div className="nav-content container">
+  <Navigation>
+    <NavigationContainer>
       <Link to="/">
-        <Logo className="logo" />
+        <LogoContainer />
       </Link>
-      <ul className="nav-list">
+      <NavList>
         <li>
-          <Link className="nav-link" to="/">
-            Home
-          </Link>
+          <NavLink to="/">Home</NavLink>
         </li>
         <li>
-          <Link className="nav-link" to="/about">
-            About
-          </Link>
+          <NavLink to="/about">About</NavLink>
         </li>
-      </ul>
-    </div>
-  </nav>
+      </NavList>
+    </NavigationContainer>
+  </Navigation>
 );
 
 export default Header;

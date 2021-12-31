@@ -1,111 +1,112 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import Loading from "../../components/loading/loading.component";
 
-import { Link } from "react-router-dom";
+import {
+  CocktailPageContainer,
+  CockContainer,
+  CockImage,
+  CockContent,
+  CockGroup,
+  CockLabel,
+  CockInfo,
+} from "./cocktail-page.styles";
 
-import "./cocktail-page.styles.scss";
+import { ButtonContainer, ButtonPrimary, HeadingPrimary } from "../../App.jsx";
 
 const url2 = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=";
 
-export default class CocktailPage extends React.Component {
-  constructor(props) {
-    super(props);
+const CocktailPage = () => {
+  const { cocktailId } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
+  const [cocktail, setCocktail] = useState(null);
 
-    this.state = {
-      isLoading: true,
-      cocktail: null,
-    };
-  }
+  useEffect(() => {
+    const fetchSingleCocktail = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(`${url2}${cocktailId}`);
+        const data = await response.json();
 
-  fetchSingleCocktail = async () => {
-    try {
-      const id = this.props.match.params.cocktailId;
-      const response = await fetch(`${url2}${id}`);
-      const data = await response.json();
+        const drink = data.drinks[0];
+        if (drink) {
+          const ingredients = [
+            drink.strIngredient1,
+            drink.strIngredient2,
+            drink.strIngredient3,
+            drink.strIngredient4,
+            drink.strIngredient5,
+          ]
+            .filter((ing) => ing)
+            .join(",");
 
-      const drink = data.drinks[0];
-      if (drink) {
-        const ingredients = [
-          drink.strIngredient1,
-          drink.strIngredient2,
-          drink.strIngredient3,
-          drink.strIngredient4,
-          drink.strIngredient5,
-        ]
-          .filter((ing) => ing)
-          .join(",");
-
-        const cocktail = {
-          name: drink.strDrink,
-          info: drink.strAlcoholic,
-          category: drink.strCategory,
-          image: drink.strDrinkThumb,
-          instructions: drink.strInstructions,
-          ingredients,
-        };
-
-        this.setState({ cocktail, isLoading: false }, () =>
-          console.log(this.state.cocktail)
-        );
+          const cocktail = {
+            name: drink.strDrink,
+            info: drink.strAlcoholic,
+            category: drink.strCategory,
+            image: drink.strDrinkThumb,
+            instructions: drink.strInstructions,
+            ingredients,
+          };
+          setCocktail(cocktail);
+          setIsLoading(false);
+        }
+      } catch (err) {
+        console.error(err);
+        setIsLoading(false);
       }
-    } catch (err) {
-      console.error(err);
-      this.setState({ isLoading: false });
-    }
-  };
+    };
 
-  componentDidMount() {
-    this.fetchSingleCocktail();
-  }
+    fetchSingleCocktail();
+  }, [cocktailId]);
 
-  render() {
-    const { isLoading, cocktail } = this.state;
+  if (isLoading) return <Loading />;
 
-    if (isLoading) return <Loading />;
-
+  if (!cocktail)
     return (
-      <div className="container cocktail-page">
-        <div className="btn-container">
-          <Link className="btn-primary " to="/">
-            Back home
-          </Link>
-        </div>
-        <h1 className="heading-primary">{cocktail.name}</h1>
-        <div className="cock-container">
-          <img
-            className="cock-image"
-            src={cocktail.image}
-            alt={cocktail.name}
-          />
-          <div className="cock-content">
-            <div className="cock-group">
-              <span className="cock-label">Name:</span>
-              <span className="cock-info">&nbsp; {cocktail.name}</span>
-            </div>
-            <div className="cock-group">
-              <span className="cock-label">Category:</span>
-              <span className="cock-info">&nbsp; {cocktail.category}</span>
-            </div>
-            <div className="cock-group">
-              <span className="cock-label">Info:</span>
-              <span className="cock-info">&nbsp; {cocktail.info}</span>
-            </div>
-            <div className="cock-group">
-              <span className="cock-label">Glass:</span>
-              <span className="cock-info">&nbsp; {cocktail.glass}</span>
-            </div>
-            <div className="cock-group">
-              <span className="cock-label">Instructions:</span>
-              <span className="cock-info">&nbsp; {cocktail.instructions}</span>
-            </div>
-            <div className="cock-group">
-              <span className="cock-label">Ingredients:</span>
-              <span className="cock-info">&nbsp; {cocktail.ingredients}</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      <CocktailPageContainer>
+        <HeadingPrimary>No cocktail to display</HeadingPrimary>
+      </CocktailPageContainer>
     );
-  }
-}
+
+  return (
+    <CocktailPageContainer>
+      <ButtonContainer>
+        <ButtonPrimary to="/">Back home</ButtonPrimary>
+      </ButtonContainer>
+      <HeadingPrimary>{cocktail.name}</HeadingPrimary>
+      <CockContainer>
+        <CockImage src={cocktail.image} alt={cocktail.name} />
+        <CockContent>
+          <CockGroup>
+            <CockLabel>Name:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.name}</CockInfo>
+          </CockGroup>
+          <CockGroup>
+            <CockLabel>Category:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.category}</CockInfo>
+          </CockGroup>
+          <CockGroup>
+            <CockLabel>Info:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.info}</CockInfo>
+          </CockGroup>
+          <CockGroup>
+            <CockLabel>Glass:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.glass}</CockInfo>
+          </CockGroup>
+          <CockGroup>
+            <CockLabel>Instructions:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.instructions}</CockInfo>
+          </CockGroup>
+          <CockGroup>
+            <CockLabel>Ingredients:</CockLabel>
+            <CockInfo>&nbsp; {cocktail.ingredients}</CockInfo>
+          </CockGroup>
+        </CockContent>
+      </CockContainer>
+    </CocktailPageContainer>
+  );
+};
+
+export default CocktailPage;

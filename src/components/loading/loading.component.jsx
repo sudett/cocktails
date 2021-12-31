@@ -1,11 +1,11 @@
 import React from "react";
 
-import "./loading.styles.scss";
+import { LoaderContainer, Loader } from "./loading.styles";
 
 const Loading = () => (
-  <div className="loader-container">
-    <span className="loader"></span>
-  </div>
+  <LoaderContainer>
+    <Loader></Loader>
+  </LoaderContainer>
 );
 
 export default Loading;

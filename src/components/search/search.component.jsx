@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-import "./search.styles.scss";
+import { useGlobalContext } from "../../context";
 
-const Search = ({ searchField, changeHandler }) => (
-  <div className=" center-content search ">
-    <h4 className="heading-tertiary">Search your favorite cocktail</h4>
-    <input
-      className="search-input"
-      type="search"
-      value={searchField}
-      onChange={changeHandler}
-    />
-  </div>
-);
+import { SearchContainer, SearchInput } from "./search.styles";
+import { HeadingTertiary } from "../../App.jsx";
+
+const Search = () => {
+  const { searchField, setSearchField } = useGlobalContext();
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
+
+  const searchFieldHandler = (e) => {
+    setSearchField(e.target.value);
+  };
+
+  return (
+    <SearchContainer>
+      <HeadingTertiary>Search your favorite cocktail</HeadingTertiary>
+      <SearchInput
+        type="search"
+        value={searchField}
+        onChange={searchFieldHandler}
+        ref={inputEl}
+      />
+    </SearchContainer>
+  );
+};
 
 export default Search;

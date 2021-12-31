@@ -1,16 +1,19 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import {
+  CenterContainer,
+  HeadingSecondary,
+  ButtonContainer,
+  ButtonPrimary,
+} from "../../App.jsx";
 
 const ErrorPage = () => (
-  <div className="center-content">
-    <h1 className="heading-secondary">Oops! It's a dead end</h1>
-    <div className="btn-container">
-      <Link to="/" className="btn-primary">
-        Back home
-      </Link>
-    </div>
-  </div>
+  <CenterContainer>
+    <HeadingSecondary>Oops! It's a dead end</HeadingSecondary>
+    <ButtonContainer>
+      <ButtonPrimary to="/">Back home</ButtonPrimary>
+    </ButtonContainer>
+  </CenterContainer>
 );
 
 export default ErrorPage;

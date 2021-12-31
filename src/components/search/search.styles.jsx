@@ -1,14 +1,13 @@
-.search {
+import styled from "styled-components";
+import { CenterContainer } from "../../App.jsx";
+
+export const SearchContainer = styled(CenterContainer)`
   padding: 3rem 4rem;
   background-color: #fff;
   box-shadow: var(--lightShadow);
+`;
 
-  @media only screen and (max-width: 43.75em) {
-    max-width: 85vw;
-  }
-}
-
-.search-input {
+export const SearchInput = styled.input`
   width: 100%;
   border: none;
   border-radius: 0.5rem;
@@ -16,4 +15,4 @@
   background-color: var(--mainGrey);
   color: inherit;
   font-size: inherit;
-}
+`;

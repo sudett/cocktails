@@ -1,4 +1,6 @@
-.cocktail {
+import styled from "styled-components";
+
+export const CocktailContainer = styled.div`
   height: 58rem;
   background-color: #fff;
   border-radius: 0.5rem;
@@ -9,27 +11,28 @@
   &:hover {
     box-shadow: var(--darkShadow);
   }
-}
+`;
 
-.cocktail-image {
+export const CocktailImage = styled.div`
   height: 55%;
   /* width: 100%; */
   background-size: cover;
   background-position: center;
-}
+  background-image: ${({ image }) => `url(${image})`};
+`;
 
-.cocktail-info {
+export const CocktailInfo = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem 2.5rem;
-}
+`;
 
-.cocktail-name {
+export const CocktailName = styled.h2`
   font-size: 3rem;
-}
+`;
 
-.cocktail-alcoholic {
+export const CocktailAlcoholic = styled.span`
   font-size: 1.4rem;
   color: var(--darkGrey);
   padding-bottom: 1rem;
-}
+`;

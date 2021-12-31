@@ -1,8 +1,10 @@
 import React from "react";
 
+import { CenterContainer, HeadingPrimary } from "../../App.jsx";
+
 const AboutPage = () => (
-  <div className="center-content">
-    <h1 className="heading-primary">About us</h1>
+  <CenterContainer>
+    <HeadingPrimary>About us</HeadingPrimary>
     <p>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias amet
       veritatis officia, quisquam illum sapiente. Ipsum distinctio, dolores
@@ -11,7 +13,7 @@ const AboutPage = () => (
       quia amet molestiae assumenda ex ab sint, facilis, numquam facere quam
       soluta cupiditate nemo voluptas!
     </p>
-  </div>
+  </CenterContainer>
 );
 
 export default AboutPage;

@@ -1,45 +1,49 @@
-.cocktail-page {
-  padding: 6rem 0;
-}
+import styled from "styled-components";
 
-.cock-container {
+import { Container } from "../../App.jsx";
+
+export const CocktailPageContainer = styled(Container)`
+  padding: 6rem 0;
+`;
+
+export const CockContainer = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 4rem;
 
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 55em) {
     grid-template-columns: auto;
   }
-}
+`;
 
-.cock-image {
+export const CockImage = styled.img`
   width: 30vw;
   object-fit: cover;
   border-radius: 0.5rem;
 
-  @media only screen and (max-width: 62.5em) {
+  @media only screen and (max-width: 55em) {
     width: 100%;
     margin-bottom: 2.5rem;
   }
-}
+`;
 
-.cock-content {
+export const CockContent = styled.div`
   align-self: center;
-}
+`;
 
-.cock-group {
+export const CockGroup = styled.div`
   margin-bottom: 2rem;
   letter-spacing: 0;
-}
+`;
 
-.cock-label {
+export const CockLabel = styled.span`
   background-color: var(--primaryLightColor);
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   color: var(--primaryColor);
   font-weight: bold;
   border-radius: 3px;
-}
+`;
 
-.cock-info {
+export const CockInfo = styled.span`
   font-weight: bold;
-}
+`;
